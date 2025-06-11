@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Minha Princesa Dani 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #ffe6f0, #ffffff);
+      color: #333;
+      text-align: center;
+      padding: 20px;
+    }
+    .hero {
+      margin-top: 50px;
+      font-size: 2em;
+      animation: fadeIn 2s ease-in-out;
+    }
+    .typewriter {
+      overflow: hidden;
+      border-right: .15em solid pink;
+      white-space: nowrap;
+      margin: 0 auto;
+      letter-spacing: .1em;
+      animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: pink; }
+    }
+    .btn {
+      margin-top: 30px;
+      background-color: pink;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+    .capsula {
+      display: none;
+      margin-top: 50px;
+    }
+    .momentos {
+      text-align: left;
+      margin: 20px auto;
+      max-width: 600px;
+    }
+    .galeria {
+      display: none;
+      margin-top: 30px;
+    }
+    .coracao {
+      font-size: 30px;
+      cursor: pointer;
+    }
+    audio {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="typewriter">Feliz Dia dos Namorados, minha princesa Dani 💘</div>
+    <button class="btn" onclick="mostrarCapsula()">Abrir Cápsula do Tempo</button>
+  </div>
+
+  <div class="capsula" id="capsula">
+    <audio id="musica" controls autoplay loop style="display:none">
+      <source src="musica1.mp3" type="audio/mpeg">
+      Seu navegador não suporta o elemento de áudio.
+    </audio>
+
+    <h2>Nossa História</h2>
+    <div class="momentos">
+      <p>🌸 Lembra dos nossos primeiros encontros? A gente sem grana, tomando um açaí na praça e depois trocando beijinhos nas ruas da ladeira... foi o começo mais lindo que eu poderia imaginar.</p>
+      <p>🎶 Nossa trilha sonora: "Na Linha do Tempo" de Victor & Leo e "Azar de Quem Perdeu" de Luan Santana. Sempre que essas músicas tocam, tudo volta na memória.</p>
+      <p>💬 Frase que resume tudo: "Mesmo quando o mundo parece difícil, seu sorriso é o lugar onde eu encontro paz."</p>
+    </div>
+
+    <p class="coracao" onclick="mostrarGaleria()">❤️</p>
+    <div class="galeria" id="galeria">
+      <p>Aqui vão entrar nossas fotos lindas (me mande que eu coloco aqui pra você 💞)</p>
+    </div>
+
+    <div style="margin-top: 40px;">
+      <h3>Uma carta pra você...</h3>
+      <p id="carta">(vamos escrever ela juntos depois, meu amor)</p>
+    </div>
+  </div>
+
+  <script>
+    function mostrarCapsula() {
+      document.getElementById('capsula').style.display = 'block';
+      const musica = document.getElementById('musica');
+      musica.style.display = 'block';
+      musica.volume = 0.2; // volume suave
+      musica.play();
+    }
+    function mostrarGaleria() {
+      document.getElementById('galeria').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
