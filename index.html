@@ -20,6 +20,7 @@
       color: #333;
       text-align: center;
       overflow-x: hidden;
+      min-height: 100vh;
     }
     
     /* Cabeçalho animado */
@@ -38,8 +39,8 @@
       100% { transform: scale(1); }
     }
     
-    /* Slideshow moderno */
-    .slideshow {
+    /* Slideshow perfeito - FOTOS INTEIRAS */
+    .slideshow-container {
       width: 85%;
       max-width: 600px;
       height: 400px;
@@ -47,23 +48,33 @@
       position: relative;
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(255,107,139,0.3);
       background: white;
+      box-shadow: 0 10px 30px rgba(255,107,139,0.3);
     }
     
     .slide {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
       position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain; /* Garante foto inteira */
       opacity: 0;
       transition: all 1s ease-in-out;
-      transform: scale(0.9);
+      border-radius: 10px;
     }
     
     .slide.active {
       opacity: 1;
-      transform: scale(1);
+    }
+    
+    /* Controles do slideshow */
+    .slide-controls {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
     }
     
     /* Players de áudio estilizados */
@@ -129,18 +140,23 @@
       color: white;
       border: none;
       padding: 12px 25px;
-      margin: 10px;
       border-radius: 50px;
       cursor: pointer;
       font-weight: 500;
       transition: all 0.3s;
       box-shadow: 0 4px 10px rgba(255,107,139,0.4);
+      font-size: 1rem;
     }
     
     .btn:hover {
       background: #ff4757;
       transform: translateY(-3px);
       box-shadow: 0 6px 15px rgba(255,107,139,0.5);
+    }
+    
+    .btn-fullscreen {
+      background: #6b5bff;
+      margin-top: 15px;
     }
     
     /* Corações flutuantes */
@@ -172,11 +188,21 @@
       100% { transform: translateY(-10vh) rotate(45deg); opacity: 0; }
     }
     
+    /* Efeito de digitação */
+    .typing-effect {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.8rem;
+      color: var(--rosa);
+      margin: 20px auto;
+      min-height: 60px;
+    }
+    
     /* Responsivo */
     @media (max-width: 600px) {
       h1 { font-size: 2.2rem; }
-      .slideshow { height: 300px; }
-      .love-letter { padding: 20px; }
+      .slideshow-container { height: 300px; }
+      .love-letter { padding: 20px; width: 90%; }
+      .btn { padding: 10px 20px; }
     }
   </style>
 </head>
@@ -212,25 +238,30 @@
   </div>
 
   <!-- Slideshow -->
-  <div class="slideshow">
-    <img class="slide active" src="foto1.jpeg">
-    <img class="slide" src="foto2.jpeg">
-    <img class="slide" src="foto3.jpeg">
-    <img class="slide" src="foto4.jpeg">
-    <img class="slide" src="foto5.jpeg">
-    <img class="slide" src="foto6.jpeg">
+  <div class="slideshow-container">
+    <img class="slide active" src="foto1.jpeg" alt="Nossa foto 1">
+    <img class="slide" src="foto2.jpeg" alt="Nossa foto 2">
+    <img class="slide" src="foto3.jpeg" alt="Nossa foto 3">
+    <img class="slide" src="foto4.jpeg" alt="Nossa foto 4">
+    <img class="slide" src="foto5.jpeg" alt="Nossa foto 5">
+    <img class="slide" src="foto6.jpeg" alt="Nossa foto 6">
   </div>
 
-  <div class="slide-nav">
+  <div class="slide-controls">
     <button class="btn" onclick="prevSlide()">← Anterior</button>
     <button class="btn" onclick="nextSlide()">Próxima →</button>
   </div>
+  
+  <button class="btn btn-fullscreen" onclick="openFullscreen()">🔍 Ver foto em tela cheia</button>
+
+  <!-- Efeito de digitação -->
+  <div class="typing-effect" id="typing"></div>
 
   <!-- Cartinha de amor -->
   <div class="love-letter">
     <p>Querida Dani,</p>
-    <p>Desde o primeiro momento em que te conheci, meu código ganhou novas cores. Você é o bug mais lindo da minha vida - aquele que eu nunca quero consertar.</p>
-    <p>Hoje, com cada linha que escrevo, penso em como nossa história é o melhor algoritmo que já criei. Te amo mais que todas as variáveis do mundo.</p>
+    <p>Você é a melhor coisa que já aconteceu na minha vida. Cada momento ao seu lado é especial e guardo cada um no meu coração.</p>
+    <p>Hoje quero te dizer que te amo mais do que todas as estrelas do céu e todas as linhas de código que já escrevi.</p>
     <p>Para sempre seu,</p>
     <p><strong>Igor</strong> 💻❤️</p>
   </div>
@@ -253,21 +284,29 @@
     // Troca automática
     setInterval(nextSlide, 3000);
     
-    // Efeito de digitação (opcional)
-    const phrases = ["Te amo!", "Minha princesa!", "Você é perfeita!"];
+    // Fullscreen
+    function openFullscreen() {
+      const activeSlide = document.querySelector('.slide.active');
+      if (activeSlide.requestFullscreen) {
+        activeSlide.requestFullscreen().catch(err => {
+          alert(`Use F11 para tela cheia\nErro: ${err.message}`);
+        });
+      } else {
+        alert("Seu navegador não suporta tela cheia automática. Use F11.");
+      }
+    }
+    
+    // Efeito de digitação
+    const phrases = [
+      "Te amo mais que tudo!",
+      "Você é minha vida!",
+      "Minha princesa linda!",
+      "Saudades de você!",
+      "Você me completa!"
+    ];
     let phraseIndex = 0;
     let charIndex = 0;
-    const typingElement = document.createElement('div');
-    typingElement.style.cssText = `
-      position: fixed;
-      bottom: 20px;
-      left: 0;
-      right: 0;
-      font-family: 'Dancing Script', cursive;
-      font-size: 1.5rem;
-      color: var(--rosa);
-    `;
-    document.body.appendChild(typingElement);
+    const typingElement = document.getElementById('typing');
     
     function typeWriter() {
       if (charIndex < phrases[phraseIndex].length) {
@@ -275,7 +314,7 @@
         charIndex++;
         setTimeout(typeWriter, 100);
       } else {
-        setTimeout(eraseText, 1500);
+        setTimeout(eraseText, 2000);
       }
     }
     
