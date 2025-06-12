@@ -16,19 +16,21 @@
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #fff5f7 0%, #f8f0ff 100%);
       margin: 0;
-      padding: 20px;
+      padding: 0;
       color: #333;
       text-align: center;
       overflow-x: hidden;
       min-height: 100vh;
     }
     
+    /* Cabeçalho animado */
     h1 {
       font-family: 'Dancing Script', cursive;
       font-size: 3rem;
       color: var(--rosa);
-      margin-top: 20px;
+      margin-top: 30px;
       animation: pulse 2s infinite;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
     
     @keyframes pulse {
@@ -37,17 +39,17 @@
       100% { transform: scale(1); }
     }
     
-    /* Slideshow */
+    /* Slideshow perfeito - FOTOS INTEIRAS */
     .slideshow-container {
-      width: 90%;
+      width: 85%;
       max-width: 600px;
       height: 400px;
-      margin: 20px auto;
+      margin: 30px auto;
       position: relative;
-      border-radius: 15px;
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(255,107,139,0.3);
       background: white;
+      box-shadow: 0 10px 30px rgba(255,107,139,0.3);
     }
     
     .slide {
@@ -55,178 +57,216 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      max-width: 95%;
-      max-height: 95%;
-      object-fit: contain;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain; /* Garante foto inteira */
       opacity: 0;
-      transition: opacity 1s ease-in-out;
-      border-radius: 8px;
+      transition: all 1s ease-in-out;
+      border-radius: 10px;
     }
     
     .slide.active {
       opacity: 1;
     }
     
-    /* Controles */
-    .controls {
+    /* Controles do slideshow */
+    .slide-controls {
       display: flex;
       justify-content: center;
       gap: 15px;
-      margin-top: 15px;
+      margin-top: 20px;
     }
     
-    .btn {
-      background: var(--rosa);
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 50px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: all 0.3s;
-      box-shadow: 0 4px 10px rgba(255,107,139,0.4);
-    }
-    
-    .btn:hover {
-      background: #ff4757;
-      transform: translateY(-3px);
-    }
-    
-    /* Mensagem */
-    .message {
+    /* Players de áudio estilizados */
+    .player {
       background: white;
-      padding: 25px;
-      margin: 30px auto;
-      width: 90%;
-      max-width: 600px;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(255,107,139,0.2);
-      position: relative;
+      padding: 15px;
+      border-radius: 50px;
+      width: 80%;
+      max-width: 400px;
+      margin: 20px auto;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s;
     }
     
-    .message::before {
+    .player:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(255,107,139,0.3);
+    }
+    
+    /* Mensagem especial */
+    .love-letter {
+      background: white;
+      padding: 30px;
+      margin: 40px auto;
+      width: 80%;
+      max-width: 600px;
+      border-radius: 20px;
+      box-shadow: 0 5px 25px rgba(255,107,139,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .love-letter::before {
       content: "";
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      height: 5px;
+      height: 10px;
       background: linear-gradient(to right, #ff6b8b, #ffb8c6);
     }
     
-    /* Contador de tempo */
-    .time-counter {
-      margin-top: 25px;
+    .love-letter p {
       font-size: 1.1rem;
+      line-height: 1.8;
+      margin: 15px 0;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 1s forwards;
     }
     
-    #contador {
-      background: rgba(255,107,139,0.1);
-      padding: 15px;
-      border-radius: 15px;
-      display: inline-block;
-      margin-top: 10px;
+    .love-letter p:nth-child(1) { animation-delay: 0.5s; }
+    .love-letter p:nth-child(2) { animation-delay: 1s; }
+    .love-letter p:nth-child(3) { animation-delay: 1.5s; }
+    
+    @keyframes fadeIn {
+      to { opacity: 1; transform: translateY(0); }
     }
     
-    #contador span {
-      font-weight: bold;
-      color: var(--rosa);
+    /* Botões */
+    .btn {
+      background: var(--rosa);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s;
+      box-shadow: 0 4px 10px rgba(255,107,139,0.4);
+      font-size: 1rem;
     }
     
-    .heart-icon {
-      width: 20px;
-      height: 20px;
-      margin: 0 5px;
-      vertical-align: middle;
+    .btn:hover {
+      background: #ff4757;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(255,107,139,0.5);
     }
     
-    /* Corações */
+    .btn-fullscreen {
+      background: #6b5bff;
+      margin-top: 15px;
+    }
+    
+    /* Corações flutuantes */
     .heart {
       position: absolute;
-      width: 15px;
-      height: 15px;
+      width: 20px;
+      height: 20px;
       background: var(--rosa);
       transform: rotate(45deg);
       animation: float 6s linear infinite;
+      pointer-events: none;
       z-index: -1;
     }
     
     .heart::before, .heart::after {
       content: '';
       position: absolute;
-      width: 15px;
-      height: 15px;
+      width: 20px;
+      height: 20px;
       background: var(--rosa);
       border-radius: 50%;
     }
     
-    .heart::before { top: -7px; left: 0; }
-    .heart::after { left: -7px; top: 0; }
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: -10px; top: 0; }
     
     @keyframes float {
       0% { transform: translateY(100vh) rotate(45deg); opacity: 1; }
       100% { transform: translateY(-10vh) rotate(45deg); opacity: 0; }
     }
     
+    /* Efeito de digitação */
+    .typing-effect {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.8rem;
+      color: var(--rosa);
+      margin: 20px auto;
+      min-height: 60px;
+    }
+    
     /* Responsivo */
     @media (max-width: 600px) {
-      h1 { font-size: 2rem; }
+      h1 { font-size: 2.2rem; }
       .slideshow-container { height: 300px; }
-      .btn { padding: 8px 15px; }
-      #contador { font-size: 0.9rem; padding: 10px; }
+      .love-letter { padding: 20px; width: 90%; }
+      .btn { padding: 10px 20px; }
     }
   </style>
 </head>
 <body>
   <!-- Corações flutuantes -->
   <script>
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 25; i++) {
       let heart = document.createElement('div');
       heart.className = 'heart';
       heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = 4 + Math.random() * 4 + 's';
-      heart.style.opacity = Math.random() * 0.6;
+      heart.style.animationDuration = 4 + Math.random() * 6 + 's';
+      heart.style.opacity = Math.random() * 0.6 + 0.2;
+      heart.style.width = heart.style.height = (10 + Math.random() * 20) + 'px';
       document.body.appendChild(heart);
     }
   </script>
 
   <h1>Para minha princesa Dani 💖</h1>
 
+  <!-- Players de áudio -->
+  <div class="player">
+    <p>Na Linha do Tempo 🎶</p>
+    <audio controls>
+      <source src="musica1.mp3" type="audio/mp3">
+    </audio>
+  </div>
+
+  <div class="player">
+    <p>Azar de Quem Perdeu 🎶</p>
+    <audio controls>
+      <source src="musica2.mp3" type="audio/mp3">
+    </audio>
+  </div>
+
   <!-- Slideshow -->
   <div class="slideshow-container">
-    <img class="slide active" src="foto1.jpeg">
-    <img class="slide" src="foto2.jpeg">
-    <img class="slide" src="foto3.jpeg">
-    <img class="slide" src="foto4.jpeg">
-    <img class="slide" src="foto5.jpeg">
-    <img class="slide" src="foto6.jpeg">
+    <img class="slide active" src="foto1.jpeg" alt="Nossa foto 1">
+    <img class="slide" src="foto2.jpeg" alt="Nossa foto 2">
+    <img class="slide" src="foto3.jpeg" alt="Nossa foto 3">
+    <img class="slide" src="foto4.jpeg" alt="Nossa foto 4">
+    <img class="slide" src="foto5.jpeg" alt="Nossa foto 5">
+    <img class="slide" src="foto6.jpeg" alt="Nossa foto 6">
   </div>
 
-  <div class="controls">
-    <button class="btn" onclick="prevSlide()">←</button>
-    <button class="btn" onclick="nextSlide()">→</button>
-    <button class="btn" onclick="openFullscreen()">🔍</button>
+  <div class="slide-controls">
+    <button class="btn" onclick="prevSlide()">← Anterior</button>
+    <button class="btn" onclick="nextSlide()">Próxima →</button>
+  </div>
+  
+  <button class="btn btn-fullscreen" onclick="openFullscreen()">🔍 Ver foto em tela cheia</button>
+
+  <!-- Efeito de digitação -->
+  <div class="typing-effect" id="typing"></div>
+
+  <!-- Cartinha de amor -->
+  <div class="love-letter">
+    <p>Querida Dani,</p>
+    <p>Você é a melhor coisa que já aconteceu na minha vida. Cada momento ao seu lado é especial e guardo cada um no meu coração.</p>
+    <p>Hoje quero te dizer que te amo mais que tudo nessa vida, se eu soubesse que insistir tanto pra gente ir tomar aquele açaí na praça resultaria em ter encontrado a pessoa com quem quero ficar o resto da vida eu insistiria mil vezes, te amo muito muito minha pitica.</p>
+    <p>Para sempre seu,</p>
+    <p><strong>Igor</strong> ❤️</p>
   </div>
 
-  <!-- Mensagem -->
-  <div class="message">
-    <p>Dani, cada dia ao seu lado é um frame perfeito no filme da minha vida.</p>
-    <p>Você é meu bug favorito - aquele que nunca quero consertar.</p>
-    <p>Te amo mais que todos os commits do mundo.</p>
-    
-    <!-- Contador de tempo -->
-    <div class="time-counter">
-      <div id="contador">
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iI2ZmNjA4YiIgZD0iTTEyIDIxLjM1bC0xLjQ1LTEuMzJDNy40IDE1LjM2IDIgMTEuMjggMiA2LjUgMiA0IDQgMiA2LjUgMmgxMUMxOSAyIDIxIDQgMjEgNi41YzAgNC43OC01LjQgOC44Ni04LjU1IDEzLjU0TDEyIDIxLjM1WiIvPjwvc3ZnPg==" class="heart-icon">
-        Nossa jornada: 
-        <span id="anos">0</span> anos, 
-        <span id="meses">0</span> meses e 
-        <span id="dias">0</span> dias
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iI2ZmNjA4YiIgZD0iTTEyIDIxLjM1bC0xLjQ1LTEuMzJDNy40IDE1LjM2IDIgMTEuMjggMiA2LjUgMiA0IDQgMiA2LjUgMmgxMUMxOSAyIDIxIDQgMjEgNi41YzAgNC43OC01LjQgOC44Ni04LjU1IDEzLjU0TDEyIDIxLjM1WiIvPjwvc3ZnPg==" class="heart-icon">
-      </div>
-    </div>
-  </div>
-
+  <!-- Scripts -->
   <script>
     // Slideshow
     let currentSlide = 0;
@@ -241,71 +281,56 @@
     function nextSlide() { showSlide(currentSlide + 1); }
     function prevSlide() { showSlide(currentSlide - 1); }
     
+    // Troca automática
+    setInterval(nextSlide, 3000);
+    
     // Fullscreen
     function openFullscreen() {
       const activeSlide = document.querySelector('.slide.active');
       if (activeSlide.requestFullscreen) {
         activeSlide.requestFullscreen().catch(err => {
-          console.log("Erro ao abrir fullscreen:", err);
+          alert(`Use F11 para tela cheia\nErro: ${err.message}`);
         });
+      } else {
+        alert("Seu navegador não suporta tela cheia automática. Use F11.");
       }
     }
     
-    // Contador de tempo juntos (desde 15/05/2021)
-    function calcularTempoJuntos() {
-      const dataInicio = new Date('2021-05-15'); // DATA DO PRIMEIRO ENCONTRO
-      const hoje = new Date();
-      
-      // Cálculo preciso de anos, meses e dias
-      let anos = hoje.getFullYear() - dataInicio.getFullYear();
-      let meses = hoje.getMonth() - dataInicio.getMonth();
-      let dias = hoje.getDate() - dataInicio.getDate();
-      
-      // Ajustes para valores negativos
-      if (dias < 0) {
-        meses--;
-        // Dias no mês anterior
-        const ultimoDiaMesAnterior = new Date(
-          hoje.getFullYear(),
-          hoje.getMonth(),
-          0
-        ).getDate();
-        dias += ultimoDiaMesAnterior;
+    // Efeito de digitação
+    const phrases = [
+      "Te amo mais que tudo!",
+      "Você é minha vida!",
+      "Minha princesa linda!",
+      "Saudades de você!",
+      "Você me completa!"
+    ];
+    let phraseIndex = 0;
+    let charIndex = 0;
+    const typingElement = document.getElementById('typing');
+    
+    function typeWriter() {
+      if (charIndex < phrases[phraseIndex].length) {
+        typingElement.textContent += phrases[phraseIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(typeWriter, 100);
+      } else {
+        setTimeout(eraseText, 2000);
       }
-      
-      if (meses < 0) {
-        anos--;
-        meses += 12;
-      }
-      
-      // Total de dias (para animação)
-      const diferencaMs = hoje - dataInicio;
-      const totalDias = Math.floor(diferencaMs / (1000 * 60 * 60 * 24));
-      
-      return { anos, meses, dias, totalDias };
     }
     
-    function atualizarContador() {
-      const { anos, meses, dias, totalDias } = calcularTempoJuntos();
-      
-      document.getElementById('anos').textContent = anos;
-      document.getElementById('meses').textContent = meses;
-      document.getElementById('dias').textContent = dias;
-      
-      // Animação opcional (contagem regressiva dos dias totais)
-      const contadorDias = document.getElementById('dias');
-      let contagem = 0;
-      const intervalo = setInterval(() => {
-        contadorDias.textContent = contagem;
-        contagem++;
-        if (contagem > dias) clearInterval(intervalo);
-      }, 30);
+    function eraseText() {
+      if (charIndex > 0) {
+        typingElement.textContent = phrases[phraseIndex].substring(0, charIndex-1);
+        charIndex--;
+        setTimeout(eraseText, 50);
+      } else {
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        setTimeout(typeWriter, 500);
+      }
     }
     
-    // Inicia tudo
-    atualizarContador();
-    setInterval(atualizarContador, 86400000); // Atualiza a cada 24h
-    setInterval(nextSlide, 3000); // Troca de slide a cada 3s
+    // Inicia o efeito
+    setTimeout(typeWriter, 2000);
   </script>
 </body>
 </html>
